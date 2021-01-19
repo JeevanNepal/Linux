@@ -1,2 +1,6 @@
 Create a cron job:
   > 32 11 * * * and the path /bin/sh /home/user/Desktop/abc.sh
+  
+  
+  
+Linux runlevels: 
