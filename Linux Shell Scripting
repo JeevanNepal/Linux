@@ -12,3 +12,21 @@ rocket-start-engine lunar-mission
 rocket-lift-off lunar-mission
 
 rocket-status lunar-mission
+
+
+--------------------------------------------------------------------------------------------------------------------------
+
+mars-mission
+
+
+mkdir - mars-mission
+
+rocket add mars-mission
+
+rocket-start-power mars-mission
+rocket-internal-power mars-mission
+rocket-start-sequence mars-mission
+rocket-start-engine mars-mission
+rocket-lift-off mars-mission
+
+rocket-status mars-mission
