@@ -35,3 +35,8 @@ rocket-status mars-mission
 
 
 VARIABLES IN Shell scripting:
+
+A variable always has a $ sign before it.
+
+While setting the vale of the varialbles we do not use $ sing before it.
+
