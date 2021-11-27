@@ -8,3 +8,5 @@ Mkdir -p india/mumbai: it helps to create a dir whith parent dir and all those c
 
 
 Working with Hardware in Linux.
+
+dmesg is a command ot display the message in linux.
