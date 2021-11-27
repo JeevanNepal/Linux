@@ -15,3 +15,5 @@ lspci - Perepheral component interconnect.
 lsblk - list info about block devices.
 lsmem --summary : List the memory size in the system.
 free -m : shows the total and used memory in the system.
+
+
