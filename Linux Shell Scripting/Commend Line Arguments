@@ -3,3 +3,33 @@ Command Line Arguments in Shell Scripts:
 Ex: create-and-launch-rocket                lunar-mission         mars-mission
                 
              $0                                  $1                    $2   ......... and so on......
+             
+mission_name=$1        
+
+mkdir - lunar-mission
+
+rocket add lunar-mission
+
+rocket-start-power lunar-mission
+rocket-internal-power lunar-mission
+rocket-start-sequence lunar-mission
+rocket-start-engine lunar-mission
+rocket-lift-off lunar-mission
+
+rocket-status lunar-mission
+
+
+replace by command line arguments as below:
+
+mission_name=$1
+mkdir $1
+
+rocket add $1
+
+rocket-start-power $1
+rocket-internal-power $1
+rocket-start-sequence $1
+rocket-start-engine $1
+rocket-lift-off $1
+
+rocket-status $1
