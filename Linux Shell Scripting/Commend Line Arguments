@@ -33,3 +33,19 @@ rocket-start-engine $1
 rocket-lift-off $1
 
 rocket-status $1
+
+
+
+
+BEST PRACTICE:
+
+Always design a script that is re-usable.
+It should not require to be modified when it's to be run.
+Use command line arguments to pass inputs.
+
+-----------------------------------------------------------------------------------------------------------------------------------
+
+Inputs in Shell scripts:
+
+READ INPUT: 
+read -p "Enter mission name:" mission_name
