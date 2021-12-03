@@ -1,2 +1,5 @@
 Command Line Arguments in Shell Scripts:
 
+Ex: create-and-launch-rocket                lunar-mission         mars-mission
+                
+             $0                                  $1                    $2   ......... and so on......
