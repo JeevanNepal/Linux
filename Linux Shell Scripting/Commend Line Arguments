@@ -55,7 +55,17 @@ read -p "Enter mission name:" mission_name
 Arithmetic Operations in Shell Script:
 
 
+exp 9 + 3 = 12
 
+exp 4 \* 3 = 12 * must be used on multiplication.
+
+Another way for operating:
+Double pranthesis ((  )).
+
+exp $((  )).
+
+
+however exp dosen't support floating point number, so we need to use : echo $A / $B | bc -l
 
 
 
