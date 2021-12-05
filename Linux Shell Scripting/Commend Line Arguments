@@ -65,9 +65,9 @@ Double pranthesis ((  )).
 exp $((  )).
 
 
-however exp dosen't support floating point number, so we need to use : echo $A / $B | bc -l
+However exp dosen't support floating point number, so we need to use : echo $A / $B | bc -l
 
-
+update should be always in vi editor.
 
 
 
