@@ -22,9 +22,13 @@ rocket-lift-off lunar-mission
 rocket-status lunar-mission
 
 
-replace by command line arguments as below:
+Let's update our script to use a command line variable in the place of lunar-mission
 
-mission_name=$1
+
+
+The script is available at the path /home/bob/create-and-launch-rocket. Set the variable mission_name to the command line argument $1
+
+mission_name=1
 mkdir $1
 
 rocket add $1
