@@ -1,3 +1,6 @@
+While using variables VI text editor should be used to enter the text or to modify the file contents.
+
+
 Command Line Arguments in Shell Scripts:
 
 Ex: create-and-launch-rocket                lunar-mission         mars-mission
