@@ -1,3 +1,22 @@
 Conditional Logics in Shell Script:
 
 If the rocket launch fails the nwe must run rocket debug (mission_name)command to check why it failed.
+
+ststement:
+
+if [ $rocket_status="Failed" ]
+
+then 
+ rocket-debug $mission_name
+ 
+elseif [ $rocket_status="Success" ]
+
+  then
+  
+echo "This is successful"
+
+else
+
+echo "This is failed or successful"
+
+fi
