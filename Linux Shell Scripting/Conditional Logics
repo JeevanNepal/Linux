@@ -1,1 +1,3 @@
 Conditional Logics in Shell Script:
+
+If the rocket launch fails the nwe must run rocket debug (mission_name)command to check why it failed.
