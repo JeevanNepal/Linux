@@ -20,3 +20,25 @@ else
 echo "This is failed or successful"
 
 fi
+
+
+
+
+
+Conditional Operators:
+
+[ string1 = string2 ]
+
+[ "abc" = "abc" ] - If string 1 is exactly equal to string 2.
+
+[ "abc" != "abc" ] - IF string1 is not string 2.
+
+[ 3 -eq 3 ] - If number 1 euqal to number 2 (true).
+
+[ 2 -ne 2 ] - if number 1 is not equal to number 2(false).
+
+[ 4 -gt 3] - If number 1 is greated then number 2(true).
+
+[ 4 -lt 5 ] -If number 1 is less then number 2 (true).
+
+
