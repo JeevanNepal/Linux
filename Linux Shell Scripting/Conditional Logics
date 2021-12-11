@@ -50,3 +50,8 @@ Another way of specifying conditional operation:
 [[ "abc" < "bcd" ]] - This symbol checks if the sorted string is in alphabetical order or not. if abc comes before(<) bcd true.
 
 
+AND &&  & OR || operators:
+
+[ condition1 ] && [ condition2 ]
+
+[ condition1 ] || [ condition2 ]
