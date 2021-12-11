@@ -43,4 +43,10 @@ Conditional Operators:
 
 
 
+Another way of specifying conditional operation:
+
+[[ "abc" > "bcd"  ]] - This symbol checks if the sorted string is in alphabetical order or not. if abc comes after(>) bcd false.
+
+[[ "abc" < "bcd" ]] - This symbol checks if the sorted string is in alphabetical order or not. if abc comes before(<) bcd true.
+
 
