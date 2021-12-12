@@ -1,1 +1,16 @@
 Loops in Shell Scripting:
+
+For Loop:
+
+If we need to run a same command multiple times then a for loop should be used.
+
+for mission in lunar-mission jupiter mission ....... n-mission.
+
+do
+create-and-launch-rocket $mission 
+
+done
+
+
+If the mission names are thousands it maybe be difficult to type all the mission names:
+So we store all the missions name in a file and run it with `cat mission-name.txt`
