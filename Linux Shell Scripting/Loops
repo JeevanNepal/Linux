@@ -32,3 +32,10 @@ do
 create-and-launch-rocket $mission 
 
 done
+
+
+Use of For loop when you have to:
+1. Execute a command or set of commands many times.
+2. Iterate through files.
+3. Iterate the lines within a file.
+4. Iterate through the output of a command.
