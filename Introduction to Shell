@@ -12,5 +12,14 @@ Types of SHells:
 3. Korn Shell
 4.Bourne again Shell(bash)
 5. Z shell
+
+
+Creating environment variable:
+export project=management.
+
+
+
+Set an alias called up for the command uptime and make it persistent by adding to ~/.profile file.
+Ans: echo alias up=uptime >> ~bob/.profile
   
 
