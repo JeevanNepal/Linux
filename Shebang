@@ -1,2 +1,4 @@
 Shebang in Shell Script:
 #!/bin/bash: It's the syntax of shebang shell script.
+
+Best practice is to use shebang script while we write a script: #!/bin/bash
