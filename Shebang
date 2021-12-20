@@ -1,1 +1,2 @@
 Shebang in Shell Script:
+#!/bin/bash: It's the syntax of shebang shell script.
