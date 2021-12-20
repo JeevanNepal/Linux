@@ -55,6 +55,15 @@ do
 done
 
 
+While Loop:
+Uses:
+    1. Execute a commmand or set of commands multiple times but we are not sure how many times.
+    2. Execute a commmand or set of commands until a specific condition occurs.
+    3. Create infinite loop.
+    4. Menu driven programms.
+    
+
+
 
 
 
