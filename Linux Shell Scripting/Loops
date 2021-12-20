@@ -42,5 +42,16 @@ Use of For loop when you have to:
 
 
 Lab Questions:
+Let us now update the script /home/bob/launch-rockets.sh to read mission names from a file.
+
+
+
+Mission names are located at /tmp/assets/mission-names.txt
+
+
+for mission_name in $(cat /tmp/assets/mission-names.txt)
+do
+    bash /home/bob/create-and-launch-rocket $mission_name
+done
 
 
