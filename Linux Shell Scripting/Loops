@@ -67,7 +67,7 @@ Uses:
         echo "1. Shutdown"
         echo "2. Restart"
         echo "3. Exit Menu"
-        read -p "Enter your choice": Choice
+        read -p "Enter your choice:" Choice
         
         if [ $choice -eq 1 ]
             then
@@ -80,12 +80,32 @@ Uses:
          break
          else
          continue
-         done
-         fi
+       fi
+     done
          
     
 
 
 Case Statements:
+
+Ex: while true
+        do
+         echo "1. Shutdown"
+         echo "2. Restart"
+         echo "3. Exit Menu"
+         read -p "Enter your choice:" Choice
+        
+        case $choice in
+        
+         1) shutdown now
+            ;;
+         2) shutdown -r now
+            ;;
+         3) break
+            ;;
+          4) continue
+         
+       esac
+    done
 
 
