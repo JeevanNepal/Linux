@@ -110,6 +110,6 @@ Ex: while true
 
 
 Exit Code:
-
+to see the exit code, write echo $?
 
 
