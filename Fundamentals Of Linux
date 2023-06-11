@@ -24,3 +24,7 @@ free -m : shows the total and used memory in the system.
 /tmp: temporary space typically cleared on reboot.
 /usr: user related programs.
 /var: variable datas most notably logs files.
+/cgroup: controls group hierarchy.
+/boot: files needed to boot the operating system.
+/dev: devices files typically controlled by operating system and the system administrators.
+
