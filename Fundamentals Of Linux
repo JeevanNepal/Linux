@@ -16,3 +16,10 @@ lsmem --summary : List the memory size in the system.
 free -m : shows the total and used memory in the system.
 
 
+/ root: the top of the file system directory.
+/bin: binaries and other executable programs.
+/home: home directory
+/etc: system configuration files.
+/opt: optional or third party software.
+/tmp: temporary space typically cleared on reboot.
+/usr: user related programs.
