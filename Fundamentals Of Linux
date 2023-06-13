@@ -65,5 +65,11 @@ Unix Specific Directories
 ESSENTIAL Linux Commands.
 -------------------------
 
-
+pwd Displays the present working directory.
+cd Changes the current directory.
+ls Lists directory contents.
+cat Concatenates and displays files.
+man Displays the online manual.
+clear Clears the screen.
+exit Exits the shell or your current session.
 
