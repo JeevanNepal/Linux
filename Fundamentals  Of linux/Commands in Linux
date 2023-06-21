@@ -561,4 +561,13 @@ Disk Usage:
 ===========
 du - estimates file usage.
 du -k displays in kilobyte.
-du -h displys sizes in human reada.le format,
+du -h displys sizes in human reada.le format.
+
+
+
+Comparing Files:
+===============
+
+diff file1 file - compare 2 files
+sdiff file1 file2 - side -by side comparison
+vimdiff file1 file2 - hilight difference in vim.
