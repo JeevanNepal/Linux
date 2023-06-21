@@ -555,3 +555,10 @@ gunzip-unzips the file
 gzcat- concaneates compressed files or 
 zcat - concaneates compressed files
 
+
+
+Disk Usage:
+===========
+du - estimates file usage.
+du -k displays in kilobyte.
+du -h displys size in human reada.le format,
