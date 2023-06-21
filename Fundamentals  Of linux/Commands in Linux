@@ -5,6 +5,32 @@ Linux is a family of open source Unix-like operating systems based on the Linux 
 Mkdir -p india/mumbai: it helps to create a directory whith parent directory and all those child directory will be created.
 
 
+Here are some of the most useful Linux commands:
+===============================================
+ls - Lists the contents of a directory.
+cd - Changes the current directory.
+pwd - Prints the current working directory.
+mkdir - Creates a new directory.
+rmdir - Removes an empty directory.
+rm - Removes a file or directory.
+cp - Copies a file or directory.
+mv - Moves or renames a file or directory.
+touch - Creates an empty file.
+cat - Displays the contents of a file.
+grep - Searches for a pattern in a file.
+man - Displays the manual page for a command.
+history - Lists the commands that you have previously entered.
+sudo - Runs a command with superuser privileges.
+df - Displays the amount of free disk space.
+du - Displays the disk usage of a directory or file.
+top - Displays a real-time overview of system resources.
+ps - Lists the processes that are currently running.
+kill - Sends a signal to a process.
+ping - Verifies that a network connection is working.
+wget - Downloads a file from the web.
+uname - Displays information about the system.
+
+
 
 Working with Hardware in Linux.
 ==============================
