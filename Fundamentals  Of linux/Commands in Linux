@@ -335,8 +335,11 @@ $ tail -f /opt/app/var/log.txt
 Oct 10 16:41:17 app: [ID 107833 user.info] Processing request 7680687
 Oct 10 16:42:28 app: [ID 107833 user.err] User pat denied access to admin
 functions
-...
-Editing Files
+==========================================================================================================================================================
+
+
+Editing Files:
+=============
 Nano
 If you need to edit a file right now and do not want to spend any time learning obscure editor
 commands, use nano . Nano is a clone of pico , so if for some reason the nano command is not
