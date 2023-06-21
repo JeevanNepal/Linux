@@ -561,4 +561,4 @@ Disk Usage:
 ===========
 du - estimates file usage.
 du -k displays in kilobyte.
-du -h displys size in human reada.le format,
+du -h displys sizes in human reada.le format,
