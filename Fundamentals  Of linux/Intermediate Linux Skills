@@ -143,3 +143,130 @@ root 3 2 0 Jan08 ? 00:00:01 [ksoftirqd/0]
 root 6 2 0 Jan08 ? 00:00:00 [migration/0]
 root 7 2 0 Jan08 ? 00:00:04 [watchdog/0]
 ...
+
+
+
+
+
+Transferring and Copying Files:
+===============================
+You already know how to copy files from one location to another on the same system using the
+cp command. But what if you want to copy files from your local workstation to a Linux server or
+between Linux servers? For that you can use SCP or SFTP.
+SCP is secure copy and SFTP is SSH file transfer protocol. Sometimes SFTP is referred to as
+secure file transfer protocol. SCP and SFTP are both extensions of the secure shell (SSH)
+protocol. This means that if you have SSH key authentication configured for SSH, it will also
+work with SCP and SFTP.
+In order to use SCP or SFTP you need a client. Mac and Linux come with scp and sftp
+command line utilities. If you are running Windows, you can use the PuTTY Secure Copy Client
+(pscp.exe ) and the PuTTY Secure File Transfer client (psftp.exe ) programs. Command line
+utilities aren't your only option. There are graphical clients for each platform as well. Some run on
+Windows, Linux, and Mac like FileZilla, while others only run on one platform like WinSCP for
+Windows.
+scp source destination - Copy source to destination.
+sftp [username@]host - Connect to host as username to begin a secure file transfer session.
+If you are looking for a more interactive experience where you can examine the local and remote
+file systems, use SFTP. With SCP you need to know what files you want to transfer before using
+the command. Here is a sample SFTP session.
+bobby@laptop:/tmp $ sftp bob@linuxsvr
+bob@linuxsvr's password:
+Connected to linuxsvr.
+sftp> pwd
+Remote working directory: /home/bob
+sftp> ls -la
+drwxr-xr-x 4 bob bob 4096 Dec 25 19:00 .
+drwxr-xr-x 4 root root 4096 Dec 2 22:01 ..
+-rw------- 1 bob bob 52 Dec 25 19:00 .Xauthority
+-rw------- 1 bob bob 1504 Dec 25 18:53 .bash_history
+-rw-r--r-- 1 bob bob 220 Apr 3 2012 .bash_logout
+-rw-r--r-- 1 bob bob 3655 Dec 2 22:02 .bashrc
+-rw-r--r-- 1 bob bob 675 Apr 3 2012 .profile
+drwx------ 2 bob bob 4096 Dec 25 19:00 .ssh
+sftp> lpwd
+Local working directory: /tmp
+sftp> lls
+file1.txt
+sftp> put file1.txt
+Uploading file1.txt to /home/bob/file1.txt
+file1.txt 100%
+18 0.0KB/s 00:00
+sftp> ls
+file1.txt
+sftp> ls -la
+drwxr-xr-x 4 bob bob 4096 Dec 25 19:02 .
+drwxr-xr-x 4 root root 4096 Dec 2 22:01 ..
+-rw------- 1 bob bob 52 Dec 25 19:00 .Xauthority
+-rw------- 1 bob bob 1504 Dec 25 18:53 .bash_history
+-rw-r--r-- 1 bob bob 220 Apr 3 2012 .bash_logout
+-rw-r--r-- 1 bob bob 3655 Dec 2 22:02 .bashrc
+-rw-r--r-- 1 bob bob 675 Apr 3 2012 .profile
+drwx------ 2 bob bob 4096 Dec 25 19:00 .ssh
+-rw-rw-r-- 1 bob bob 18 Dec 25 19:02 file1.txt
+sftp> quit
+bobby@laptop:/tmp $
+Using scp , you can copy from your local system to a remote system, from a remote system to
+your local system, or from one remote system to another remote system. Here is how that looks.
+bob@linuxsvr $ scp test.txt linuxsvr1:~/
+test.txt 100% 35KB 35.3KB/s 00:00
+bob@linuxsvr $ scp linuxsvr1:~/test.txt .
+test.txt 100% 35KB 35.3KB/s 00:00
+bob@linuxsvr $ scp linuxsvr1:~/test.txt linuxsvr2:/tmp/test-copy.txt
+bob@linuxsvr $
+SCP and SFTP aren't the only ways to transfer files to remote systems. Sometimes FTP (file
+transfer protocol) is enabled. In such cases you can use the built-in ftp command on Linux and
+Mac and a graphical client like WinSCP for windows. Just be aware that FTP is not using a
+secure transfer protocol like SCP and SFTP. This means that your login credentials are sent in
+plain text over the network. Also, the files that you upload and download are not encrypted either.
+If given the choice between SCP/SFTP or FTP, use SCP/SFTP.
+bobby@laptop:~$ ftp linuxsvr
+Connected to linuxsvr.
+220 ubuntu FTP server (Version 6.4) ready.
+Name (linuxsvr:bobby): bob
+331 Password required for bob.
+Password:
+230 User bob logged in.
+Remote system type is UNIX.
+Using binary mode to transfer files.
+ftp> pwd
+257 "/home/bob" is current directory.
+ftp> quit
+221 Goodbye.
+If FTP is not enabled, you will see a "Connection refused" error message.
+bobby@laptop:~$ ftp linuxsvr
+ftp: connect: Connection refused
+ftp> quit
+bobby@laptop:~$
+Deep dive
+Cyberduck - FTP and SFTP client for Mac and Windows.
+FileZilla - FTP and SFTP client for Mac, Linux, and Windows.
+FlashFXP - FTP and SFTP client for Windows.
+FireFTP - FTP and SFTP client Firefox that is Mac, Linux, and Windows compatible.
+PuTTY
+PSCP.EXE - SCP client for Windows
+PSFTP.EXE - SFTP client for Windows
+Transmit - FTP and SFTP client for Mac. WinSCP - FTP and SFTP client for Windows
+
+
+
+
+
+SCP / SFTP Clients:
+===================
+Windows:
+=======
+CuteFTP http://www.cuteftp.com/cuteftp/
+Cyberduck http://cyberduck.io/
+FileZilla https://filezilla-project.org/
+FlashFXP http://www.flashfxp.com/
+PuTTY http://www.chiark.greenend.org.uk/~sgtatham/putty/
+SmartFTP http://www.smartftp.com/
+WinSCP http://winscp.net
+
+Mac:
+==
+CuteFTP http://www.cuteftp.com/cuteftp/
+Cyberduck http://cyberduck.io/
+FileZilla https://filezilla-project.org/
+Flow http://fivedetails.com/flow/
+Transmit http://panic.com/transmit/
+YummyFTP http://www.yummysoftware.com/
