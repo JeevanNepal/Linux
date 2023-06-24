@@ -313,3 +313,9 @@ To make your customized shell prompt persist betweens logins, add the PS1 value 
 personal initialization files. Personal initialization files are commonly referred to as "dot files"
 since they begin with a dot or period.
 $ echo 'export PS1="[\u@\h \w]\$ "' >> ~/.bash_profile
+
+
+
+Environment Variable:
+====================
+To print environment variable just type: printenv
