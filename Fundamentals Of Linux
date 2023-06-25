@@ -4,6 +4,17 @@ Linux is a family of open source Unix-like operating systems based on the Linux 
 
 Mkdir -p india/mumbai: it helps to create a directory whith parent directory and all those child directory will be created.
 
+==============================================================================================================================
+
+If you get the installation issue for ubuntu using wsl --intsll, use the below command to resolve the issue.
+
+>wsl --unregister ubuntu
+followed by
+>wsl --install
+fixes the problem for ubuntu atleast
+
+
+===============================================================================================================================
 
 
 Working with Hardware in Linux.
