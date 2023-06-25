@@ -13,7 +13,7 @@ followed by
 >wsl --install
 fixes the problem for ubuntu atleast
 
-
+after the installation is succesful, restart/reboot the system.
 ===============================================================================================================================
 
 
