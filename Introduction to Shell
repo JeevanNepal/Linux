@@ -56,3 +56,77 @@ In addition to execute entire commands in your history, you can pull out parts o
 
 !:N <Event> <Separator> <Word> 
 :N represents a word on the command line. 0 is the command, 1 is the first argument, etc.
+
+
+
+
+====================================================
+Example:
+Suppose you have run the following command:
+
+$ tail files.txt sorted_files.txt notes.txt
+Display previous command:
+
+$ !!
+To pull out the 2nd argument to previous command:
+
+$ vi !:2
+Above command is the same as vi sorted_files.txt.
+
+In addition, there are 2 more exclamation marks syntax shortcuts.
+
+Commands	Meaning
+!^	Represents the first argument, the same as !:1
+!$	Represents the last argument.
+The Tab completion
+Another way to increase your efficiency at the command line is by using Tab completion. After you start typing a command, you can hit the Tab key to invoke tab completion. Tab attempts to automatically complete partially typed commands.
+
+Examples
+Example 1: Display command history
+Display command history
+
+$ history
+  1  history
+Display command history using !N
+
+$ !1
+  1  history
+Example 2: Rerun last command
+Rerun last command using !!.
+
+$ echo 'hello world'
+hello world
+$ !!
+echo 'hello world'
+hello world
+The !! displays the command that's going to be executed, run the command and returns the output from that command.
+
+
+Example 3: Display history command with a specified string
+Display commands that has 'h'
+
+$ !h
+history
+  1  history
+  2  echo 'hello world'
+Then, if you want to run the echo 'hello world' command, you can use !2 .
+
+Example 4: Pull out portions of a command
+Suppose you have run the following command:
+
+$ echo 'one' 'two' 'three' 'four'
+And to pull out the 2nd argument, use !:2
+
+$ echo !:2
+echo 'two'
+two
+To pull out last argument, run !$
+
+$ echo !$
+echo 'three'
+three
+To pull out first argument, run!^
+
+$ echo !^
+echo 'one'
+one
