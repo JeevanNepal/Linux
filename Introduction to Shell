@@ -22,4 +22,37 @@ export project=management.
 Set an alias called up for the command uptime and make it persistent by adding to ~/.profile file.
 Ans: echo alias up=uptime >> ~bob/.profile
   
+=============================================
+Shell History
+Each command you enter into the shell is recorded in your shell history, having access to your shell history is extremely useful. You can search through your shell history, repeat commands that you've previously entered. And even recall previous commands, and change them slightly before executing them again. Not only can this save your time in keystrokes, but it can prevent you from making mistakes by running a previously known, good command.
 
+Some shells like bash keep their history in memory, and only write the history to a file on exit. Common history files include .bash_history, .history and .histfile. These history files are stored in your home directory.
+
+~/.bash_history
+~/.history
+~/.histfile
+
+
+
+
+The history command
+The history command displays the commands in your shell history. It proceeds each one of the commands with a number, that can be used to reference that command at a later time. By default, bash retains 500 commands in your shell history. This is controlled by the HISTSIZE environment variable. If you want to increase this number, run export HISTSIZE=number and place that in your personal initialization files.
+
+Commands	Meaning
+history	Displays the shell history.
+HISTSIZE	Controls the number of commands to retains in history.
+For example: retains 1500 commands
+export HISTSIZE=1500
+
+
+
+If you want to repeat the previous command, you can use !!. If you want to repeat a command that start with a certain letter or string, you can use !string. For example, to repeat the cat command, you can simply enter !c.
+
+Commands	Meaning
+!N	Repeat command line number N.
+!!	Repeat the previous command line.
+!string	Repeat the most recent command starting with "string".
+In addition to execute entire commands in your history, you can pull out parts of a command line. The syntax is
+
+!:N <Event> <Separator> <Word> 
+:N represents a word on the command line. 0 is the command, 1 is the first argument, etc.
