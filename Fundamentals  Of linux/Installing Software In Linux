@@ -1,1 +1,155 @@
+Installing and Managing Software:
+================================
 
+What You Will Learn
+What are Packages
+What are Package Managers
+How to manage software on RHEL, CentOS,
+Debian, Ubuntu, and similar operating
+systems
+
+Why Packages & Package Managers?
+Standards for bundling software files
+Common interface for managing software
+Ease of finding, installing, and uninstalling
+software
+
+What You Will Be Able to Accomplish
+How to find, install, and remove packages
+How to determine what packages are installed
+How to inspect packages and their contents
+
+Package
+A collection of files
+Data / Metadata
+Package description
+Version
+Dependencies
+
+Package Manager
+Installs, upgrades, and removes packages
+Manages dependencies
+Keeps track of what is installed
+
+Package Types
+RPM distros
+RHEL, CentOS, and Oracle Linux
+DEB distros
+Debian, Ubuntu, and Linux Mint
+
+Installing Software on RPM Distros
+RedHat
+CentOS
+Oracle Linux
+AlmaLinux
+Rocky Linux
+
+yum - RHEL 7 / CentOS 7 & Earlier
+yum search string Search for string
+yum info [package] Display info
+yum install [-y] package Install package
+yum remove package Remove package
+yum upgrade [package] Update package
+
+dnf - RHEL 8 / CentOS 8 & Later
+dnf search string Search for string
+dnf info [package] Display info
+dnf install [-y] package Install package
+dnf remove package Remove package
+dnf upgrade [package] Update package
+
+rpm
+rpm -qa
+List all installed packages
+rpm -qf /path/to/file
+List the file’s package
+
+rpm
+rpm -ql package
+List the package’s files
+rpm -ivh package.rpm
+Install the package
+
+rpm
+rpm -e package
+Erase (uninstall) the package
+
+Installing Software on DEB Distros
+Debian
+Ubuntu
+Linux Mint
+Kali Linux
+
+APT - Advanced Packaging Tool
+apt-cache
+apt-get
+apt
+
+APT - Advanced Packaging Tool
+apt-cache search string
+Search for string
+apt-get install [-y] package
+Install package
+
+APT - Advanced Packaging Tool
+apt-get remove package
+Remove package, leaving configuration
+apt-get purge package
+Remove package, deleting configuration
+
+APT - Advanced Packaging Tool
+apt-cache show package
+Display information about the package
+
+APT - Advanced Packaging Tool
+apt-get update
+Update the local list of remote packages
+apt-get upgrade [-y]
+Upgrade all installed packages
+
+APT - Advanced Packaging Tool
+apt
+Combination of apt-cache and apt-get
+apt search
+apt install
+apt purge
+apt update
+apt upgrade
+
+dpkg
+dpkg -l
+List the installed packages
+dpkg -S /path/to/file
+ List the file’s package
+
+dpkg
+dpkg -L package
+List all the files in package
+dpkg -i package.deb
+Install the package
+
+dpkg
+dpkg -r package
+Remove (uninstall) the package
+
+apt autoremove
+dnf autoremove
+How to Keep Your System Clean
+
+Recap
+Packages & Package Managers
+RPM
+dnf / yum
+rpm
+DEB
+apt
+dpkg
+
+● Search for a package.
+● View details about the package if needed.
+● Install the package.
+● Verify the installation.
+● Example software to practice with:
+○ Apache
+○ MariaDB
+Your Turn
