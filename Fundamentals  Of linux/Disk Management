@@ -1,1 +1,391 @@
+Disk Partitioning is the process of dividing a disk into one or more logical areas, often known as partitions, on which the user can work separately. 
+It is one step of disk formatting. If a partition is created, the disk will store the information about the location and size of partitions in the partition table. 
+With the partition table, each partition can appear to the operating system as a logical disk, and users can read and write data on those disks. 
+The main advantage of disk partitioning is that each partition can be managed separately.
 
+Why do we need it?
+
+To upgrade Hard Disk (to incorporate a new Hard Disk into the system)
+Dual Booting (Multiple Operating Systems on the same system)
+Efficient disk management
+Ensure backup and security.
+Work with different File Systems using the same system.
+How to Partition Disks in Linux?
+(For the purpose of demonstration Cent OS 7 and VMware are used in the screenshots of the article.)
+
+In order to successfully partition a disk and to make it useful, we need to ensure that we have completed the below four steps, regardless of the Operating system and Hardware of the system.
+
+
+Attach the disk to the proper port.
+Create partitions in the disk.
+Create a file system on the partition.
+Mounting the file systems 
+Attaching Disk:
+This step points to physically connecting the disk to the system. The below screenshot specifies the system configuration of my CentOS 7. 
+
+Initial configuration of my system
+Initial configuration of my system
+
+It is clearly specified that the system has only 20 GB of Hard Disk. After installing the necessary software and downloading some movies, I found that the system Hard Disk is almost completely used up. Now I will have two options in front of me, either buy a new system with a higher Hard Disk capacity or upgrade the existing one. Most of you will go for the second option, just like me, unless the system is very old. Let us upgrade the system with an additional 20 GB of Hard Disk.
+
+In order to attach the new virtual Hard Disk in VMware, click on the “Edit virtual machine settings” link and choose the Add option on the next window. 
+
+Attaching Disk:
+Attaching Disk
+
+Choose the Hard Disk option and move forward.
+
+Type of hardware to install
+Type of hardware to install
+
+Choose the recommended disk type. (SCSI is recommended here since the Operating System that I am using is CentOS)
+
+Select a Disk Type
+Select a Disk Type
+
+Complete the attachment of the disk by specifying the required size of Hard Disk needed and choosing the recommended selections.
+
+After attaching the new virtual Hard Disk
+After attaching the new virtual Hard Disk
+
+The final configuration shows that our system has a new Hard Disk of 20 GB size. The newly added Hard disk is of no use to our system unless we complete the remaining steps.
+
+Create Partitions in the Disk
+Power on the system and log in to the system. Ensure that you are logged in as root (or any user of the sudo group). Once the system UI comes up, open the Terminal.  
+To view the available Hard Disks in our system, use the command lsblk or cat /proc/partitions. Both commands will display the same results, but in different ways. 
+
+lsblk
+Create partitions in the disk
+Create partitions in the disk
+
+We can find that the system has two disks -> sda and sdb. sda is our older Hard Disk. We can say so, as that disk is already partitioned as sda1 and sda2. 
+We can partition the disk using CLI as well as GUI. We will demonstrate CLI based partitioning in this article.
+
+fdisk -l 
+fdisk -l 
+fdisk -l 
+
+We found that the Hard Disk that we are going to partition can be found at /dev/sdb. Use the command.
+
+fdisk /dev/sdb
+It will take us to a different console where we can use the partitioning specific commands. We will be concentrating more on the following commands (or flags).
+
+m  -> help
+p  -> print partition table
+n  -> create new partition
+d  -> delete partition
+q  -> quit without writing
+w  -> write to disk
+While partitioning, we should be aware of certain factors. 
+
+On a disk, we can have a maximum of four partitions.
+The partitions are of two types.
+Primary
+Extended
+Extended partitions can have logical partitions inside it.
+Among the four possible partitions, the possible combinations are.
+All 4 primary partitions
+3 primary partitions and 1 extended partition
+fdisk /dev/sdb
+fdisk /dev/sdb
+
+n
+This will create a new partition. Specify the type of partition using the p for primary and e for extended.
+
+p
+This will create a primary partition. The console will prompt for the number to be given to the partition. We can give any number from 1 to 4. Let me give 1. Then choose the starting position (cylinder) of partition 1. Press enters to start partitioning from the beginning of the disk. 
+
+You can specify the size of the partition in two ways, either as the last cylinder number or by specifying the size directly. If we need partition1 to be of 4 GB size (as a whole number), use.
+
++4G 
+Pressing enter will create our 1st partition successfully. Follow the same steps, until we create 4 partitions on our newly attached disk. 
+
+create our 1st partition successfully
+create our 1st partition successfully
+
+We have created 3 primary partitions and an extended partition in the disk. The extended partition, as the name suggests, can be further divided into multiple logical partitions. Once 4 partitions are created, no more partitions can be created on the same disk. We can check whether we have done the partitioning in the right way by printing the partition table using the p command. If everything is as per the expectation, then write the changes to the disk using the w command, else use the q command to quit without writing. 
+
+
+ 
+
+Create a File System on the Partition
+Computers use particular kinds of file systems to store and organize data on media, like Hard Disk, CD, DVD, etc. The commonly used Linux file systems are ext2, ext3, ext4, JFS, ReiserFS, XFS, FAT (usually in Windows OS) and B-treeFS. Inorder to specify the file system to be used in each partition, we can use the mkfs (make file system) command.
+
+mkfs.ext4 -j /dev/sdb1
+What this command does is that it will make the first partition’s file system to be ext4 (format the partition to ext4). -j flag is used to allow/support journaling. It helps in throwing errors into the journal, in case of system failure.
+
+mkfs.fat /dev/sdb2
+This command is used to format the 2nd partition available in /dev/sdb2 to the FAT file system. Even though we formatted the disks, it is of no use to us, unless we mount it on a directory.
+
+Create a file system on the partition
+Create a file system on the partition
+
+Mounting the file systems 
+Let us make three directories, for mounting the first, second, and third partition using the mkdir (make directory) command.
+
+mkdir /mount1
+mkdir /mount2
+mkdir /mount3
+Mounting the formatted partitions can be achieved using the mount command.
+
+mount /dev/sdb1 /mount1
+mount /dev/sdb2 /mount2
+mount /dev/sdb3 /mount3
+The first part of the command is the keyword mount, followed by the partition and the directory to which the mounting is to be done. To view the disk details, we can use the df command. h flag helps to display the output in a human-readable format.
+
+df -h
+Mounting the file systems 
+Mounting the file systems 
+
+Unmounting a disk can be achieved by unmount command.
+
+unmount /dev/sdb2
+All these mountains are temporary in nature. Once we reboot the system, mounting will be reverted. To make it permanent, we must edit the File System Table of the Operating System. We should be highly careful whirling with this file. A small error in this file can cause the system to be unbootable and can make the entire system to be useless. Let us open the file in any editor (I will be using the VI editor).
+
+vi /etc/fstab
+fstab(File System Table) file
+fstab(File System Table) file
+
+Add our mounted file systems’ details in the file, in the order.
+
+mounted partition        [ space ]         directory      [ space ]           file system type          [ space ]          defaults         [ space ]         0            [ space ]             0 
+
+Save the file and come back to the terminal. Mount the partitions permanently using the mount -a command 
+
+mount -a
+Mounting the file systems 
+Mounting the file systems 
+
+We can verify whether our partitions are available for our purposes by visiting the root folder of the Operating System (since we have mounted the partitions on the mount1, mount2, mount3 directories in the root folder). We can also verify the existence of our newly created partitions using the lsblk command. 
+
+lsblk
+We can find our partitions in the table, each of 4 GB size.
+
+lsblk
+lsblk
+
+Conclusion
+In this article we have discussed disk partitioning, which is the process of dividing a disk into a separate logical area that are known as partitions. One can easily understand enabling efficient disk management, facilitates dual booting, ensures backup and security by understanding this article. Proper disk partitioning is important for effective storage utilization and system administration.
+
+
+Last Updated : 09 Jun, 2023
+
+15
+
+Similar Reads
+1.
+Disk Partitioning in Ubuntu using GParted
+2.
+Checking Disk Space in Linux Using Command-Line
+3.
+Quickly Analyzing Disk Usage Statistics Using Filelight in Linux
+4.
+Gdu – Faster Disk Usage Analyzer for Linux
+5.
+Discus - Show Colourised Disk Space Usage in Linux
+6.
+How to Add New Disk in Linux CentOS 7 Without Rebooting
+7.
+Disk cloning in Linux using dd command
+8.
+Pydf - Check disk space usage with colored output
+9.
+Shell Script to Check Disk Space Usage
+10.
+Menu Driven Shell Script to Check Memory and Disk Usages
+Related Tutorials
+1.
+Linux Tutorial
+2.
+Introduction to Monotonic Stack - Data Structure and Algorithm Tutorials
+3.
+Linux Commands
+4.
+Two Pointers Technique
+5.
+Window Sliding Technique
+Previous
+How to Add OnClickListener to Marker on Google Maps in Android?
+Next
+Guide to Install and Setup Visual Studio for Android App Development
+Article Contributed By :
+https://media.geeksforgeeks.org/auth/avatar.png
+abhirajkr
+abhirajkr
+ Follow
+Vote for difficulty
+Current difficulty : Easy
+Easy
+Normal
+Medium
+Hard
+Expert
+Improved By :
+jayes5h62
+Article Tags :
+Technical Scripter 2020
+Linux-Unix
+Technical Scripter
+Improve Article
+Report Issue
+Join our Community
+Courses
+Upto 30% Offcourse-img
+55k+ interested Geeks
+GATE CS & IT 2024
+Explore
+Upto 30% Offcourse-img
+79k+ interested Geeks
+Mastering System Design: From Low-Level to High-Level Solutions
+Explore
+Upto 30% Offcourse-img
+12k+ interested Geeks
+Complete Test Series for Service-Based Companies
+Explore
+
+geeksforgeeks-footer-logo
+A-143, 9th Floor, Sovereign Corporate Tower, Sector-136, Noida, Uttar Pradesh - 201305
+feedback@geeksforgeeks.org
+GFG App on Play Store
+GFG App on App Store
+Company
+About Us
+Legal
+Careers
+In Media
+Contact Us
+Advertise with us
+Explore
+Job-A-Thon For Freshers
+Job-A-Thon For Experienced
+GfG Weekly Contest
+Offline Classes (Delhi/NCR)
+DSA in JAVA/C++
+Master System Design
+Master CP
+Languages
+Python
+Java
+C++
+PHP
+GoLang
+SQL
+R Language
+Android Tutorial
+Data Structures
+Array
+String
+Linked List
+Stack
+Queue
+Tree
+Graph
+Algorithms
+Sorting
+Searching
+Greedy
+Dynamic Programming
+Pattern Searching
+Recursion
+Backtracking
+Web Development
+HTML
+CSS
+JavaScript
+Bootstrap
+ReactJS
+AngularJS
+NodeJS
+Computer Science
+GATE CS Notes
+Operating Systems
+Computer Network
+Database Management System
+Software Engineering
+Digital Logic Design
+Engineering Maths
+Python
+Python Programming Examples
+Django Tutorial
+Python Projects
+Python Tkinter
+OpenCV Python Tutorial
+Python Interview Question
+Data Science & ML
+Data Science With Python
+Data Science For Beginner
+Machine Learning Tutorial
+Maths For Machine Learning
+Pandas Tutorial
+NumPy Tutorial
+NLP Tutorial
+Deep Learning Tutorial
+DevOps
+Git
+AWS
+Docker
+Kubernetes
+Azure
+GCP
+Competitive Programming
+Top DSA for CP
+Top 50 Tree Problems
+Top 50 Graph Problems
+Top 50 Array Problems
+Top 50 String Problems
+Top 50 DP Problems
+Top 15 Websites for CP
+System Design
+What is System Design
+Monolithic and Distributed SD
+Scalability in SD
+Databases in SD
+High Level Design or HLD
+Low Level Design or LLD
+Top SD Interview Questions
+Interview Corner
+Company Wise Preparation
+Preparation for SDE
+Experienced Interviews
+Internship Interviews
+Competitive Programming
+Aptitude Preparation
+GfG School
+CBSE Notes for Class 8
+CBSE Notes for Class 9
+CBSE Notes for Class 10
+CBSE Notes for Class 11
+CBSE Notes for Class 12
+English Grammar
+Commerce
+Accountancy
+Business Studies
+Economics
+Management
+Income Tax
+Finance
+UPSC
+Polity Notes
+Geography Notes
+History Notes
+Science and Technology Notes
+Economics Notes
+Important Topics in Ethics
+UPSC Previous Year Papers
+SSC/ BANKING
+SSC CGL Syllabus
+SBI PO Syllabus
+SBI Clerk Syllabus
+IBPS PO Syllabus
+IBPS Clerk Syllabus
+Aptitude Questions
+SSC CGL Practice Papers
+Write & Earn
+Write an Article
+Improve an Article
+Pick Topics to Write
+Write Interview Experience
+Internships
+Video Internship
+@geeksforgeeks , Some rights reserved
+We use cookies to ensure you have the best browsing experience on our website. By using o
