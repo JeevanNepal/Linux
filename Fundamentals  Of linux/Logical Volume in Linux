@@ -1,0 +1,63 @@
+file:///C:/Users/jeeva/Downloads/lvm-linux-volume-manager-tutorial-slides.pdf
+
+
+
+Flexible Capacity
+● You can aggregate multiple storage devices
+into a single logical volume.
+
+Easily Resize Storage While Online
+● Expand or shrink file systems in real-time
+while the data remains online and fully
+accessible.
+Online Data Relocation
+● Easily migrate data from one storage device
+to another while online.
+
+● You can use human-readable device names of
+your choosing.
+/dev/vg_database/lv_db_logs vs /dev/sdb3
+Convenient Device Naming
+
+Disk Striping
+● Increase throughput by allowing your system
+to read data in parallel.
+Data Redundancy / Data Mirroring
+● Increase fault tolerance and reliability by
+having more than one copy of your data.
+
+Snapshots
+● Create point-in-time snapshots of your
+filesystems.
+
+Logical Volume Creation Process
+● Create one or more physical volumes.
+● Create a volume group from those one or
+more physical volumes.
+● Create one or more logical volumes from the
+volume group.
+
+LVM Summary
+● Logical Volume Manager introduces layers of
+abstraction including:
+○ Physical Volumes (PVs)
+○ Volume Groups (VGs)
+○ Logical Volumes (LVs)
+LVM Summary - Creating LVs
+pvcreate /dev/sdb
+vgcreate vg_name /dev/sdb
+lvcreate -L 100G -n lv_name vg_name
+mkfs -t ext4 /dev/vg_name/lv_name
+
+lvextend -L +10G -r /dev/vg_name/lv_name
+pvcreate /dev/sdc
+vgextend vg_name /dev/sdc
+LVM Summary - Extending LVs
+
+LVM Summary - Mirrored LVs
+lvcreate -m 1 -L 100G -n lv_name vg_name
+
+lvremove /dev/vg_name/lv_name
+vgreduce vg_name /dev/sdb
+vgremove vg_name
+pvremove /dev/sdb
