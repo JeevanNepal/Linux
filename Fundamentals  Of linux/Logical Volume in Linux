@@ -109,3 +109,43 @@ Here are some of the most common options for the lvcreate command:
 -n name: Specifies the name of the LV.
 -t type: Specifies the type of file system that will be created on the LV.
 -f: Forces the creation of the LV, even if there is not enough space available on the VG.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Migrating data from Physical Volumes (PVs):
+==========================================
+The below steps are the same, regardless of the type/vendor of underlying storage array. The disks can be from same storage array or different storage array as well.
+#create PV from the new storage LUN
+pvcreate /dev/sdf
+#extend VG that contains the old LUN with the new PV
+vgextend vg_apps /dev/sdf
+#migrage all extents from old PV (/dev/sdc) to new PV (/dev/sdf). 
+pvmove --atomic /dev/sdc /dev/sdf
+#One can also migrate extents of a specific LV alone to new PV.
+pvmove --atomic -v -n lv_apps /dev/sdc /dev/sdf
+Below is an example of pvmove run on a multipath enabled device.
+
+#create PV from the new storage LUN for a multipath device
+pvcreate /dev/mapper/mpath2
+#extend VG that contains the old LUN with the new PV
+vgextend vg_apps /dev/mapper/mpath2
+#migrage all extents from old PV (/dev/mapper/mapth0) to new PV (/dev/mapper/mapth2).
+pvmove --atomic /dev/mapper/mapth0 /dev/mapper/mpath2
+#One can also migrate extents of a specific LV alone to new PV.
+pvmove --atomic -v -n lv_apps /dev/mapper/mapth0 /dev/mapper/mpath2
+NOTE: If pvmove is interrupted for any reason (e.g. the machine crashes) then run pvmove again without any PV arguments to restart any operations that were in progress from the last checkpoint. --atomic option ensures that all affected LVs are moved to the destination PV, or none are, if the operation is aborted. 
+This will ensure that all PVs are in same place, either in source or destination, so that extents are not moved partially. If for any reason pvmove is interrupted, the source will still remain intact.
