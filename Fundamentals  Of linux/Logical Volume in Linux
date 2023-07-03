@@ -61,3 +61,51 @@ lvremove /dev/vg_name/lv_name
 vgreduce vg_name /dev/sdb
 vgremove vg_name
 pvremove /dev/sdb
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+The logical volume creation process in Linux is as follows:
+==========================================================
+Create physical volumes (PVs). A PV is a physical storage device, such as a hard disk drive (HDD), solid-state drive (SSD), or partition, that has been initialized as a PV with LVM. Without properly initialized physical volumes, you cannot create Volume Groups or logical volumes.
+Create a volume group (VG). A VG is a collection of PVs that are managed together as a single logical unit.
+Create logical volumes (LVs) on the volume group. An LV is a logical unit of storage that is created from a VG. LVs can be used to create file systems, databases, or other types of storage.
+The following steps show how to create a logical volume in Linux:
+
+Identify the physical volumes that you want to use for the VG.
+Create the VG using the vgcreate command.
+Create the LV using the lvcreate command.
+Format the LV using the mkfs command.
+Mount the LV using the mount command.
+For example, to create a logical volume named my_lv with a size of 100 GB on the VG named my_vg, you would use the following commands:
+
+Code snippet
+vgcreate my_vg /dev/sda1 /dev/sdb1
+lvcreate -L 100G my_vg my_lv
+mkfs.ext4 /dev/my_vg/my_lv
+mount /dev/my_vg/my_lv /mnt/my_lv
+Use code with caution. Learn more
+Once the logical volume has been created, you can use it to create a file system, database, or other type of storage.
+
+Here are some of the most common options for the lvcreate command:
+
+-L size: Specifies the size of the LV in bytes.
+-n name: Specifies the name of the LV.
+-t type: Specifies the type of file system that will be created on the LV.
+-f: Forces the creation of the LV, even if there is not enough space available on the VG.
